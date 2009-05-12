@@ -1,27 +1,74 @@
-body{
+html{
 	font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+	background-color:black;
+	color:#DDD;
 }
 
+body{
+	margin:0;
+}
+
+#doc4{
+	border:solid 1px gray;
+	border-top:none;
+}
+
+#bd{
+	margin:1em 0;
+}
+
+#ft{
+	background-color:#333;
+	padding:.5em;
+	color:white;
+	font-size:90%;
+}
+
+a{
+	color:orange;
+}
+	a:hover{
+		color:yellow;
+	}
+
+#hd{
+	background-color:#333;
+	padding:1em;
+}
+	#hd .yui-u{
+		text-align:right;
+	}
+	#hd .yui-u.first{
+		text-align:left;
+		font-weight:bold;
+		letter-spacing:.5em;
+	}
+		#hd .first a{
+			text-decoration:none;
+			color:white;
+		}
+
 .form{
-	background-color:#ebf4fb;
-	border:solid 1px #AAA;
+	background-color:#111;
+	border:solid 1px #222;
 	padding:1em;
 }
 
-.form div.row{
-	float:none;
-	margin:1em;
-}
-	.form div.row .first{
-		text-align:right;
+	.form div.row{
+		float:none;
+		margin:1em;
 	}
-		.form div.row .first label{
-			font-weight:bold;
+		.form div.row .first{
+			text-align:right;
+		}
+			.form div.row .first label{
+				font-weight:bold;
+			}
+
+		.form .yui-gd .yui-u{
+			width:50%;
+		}
+		.form .yui-gd .yui-u.first{
+			width:48%;
 		}
 
-.form .yui-gd .yui-u{
-	width:50%;
-}
-.form .yui-gd .yui-u.first{
-	width:48%;
-}
