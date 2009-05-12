@@ -1,7 +1,5 @@
 class BuildingsController < ApplicationController
   
-  def index
-    
-  end
+  resource_controller
   
 end
