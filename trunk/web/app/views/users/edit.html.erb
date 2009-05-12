@@ -1,9 +1,13 @@
 <h1>Edit My Account</h1>
- 
-<% form_for @user, :url => account_path do |f| %>
+
+<% form_for @user, :url => account_path, :html=>{:class=>:form} do |f| %>
+  
   <%= f.error_messages %>
+  
   <%= render :partial => "form", :object => f %>
-  <%= f.submit "Update" %>
+  
+  <div class="row yui-gd">
+    <div class="yui-u"><%= f.submit "Update", :class=>:submit %></div>
+  </div>
+  
 <% end %>
- 
-<br /><%= link_to "My Profile", account_path %>

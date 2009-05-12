@@ -1,24 +1,39 @@
-<div>
-  <%= form.label :login %>
-  <%= form.text_field :login %>
+<div class="row yui-gd">
+  <div class="yui-u first"><%= form.label :login %></div>
+  <div class="yui-u"><%= form.text_field :login %></div>
 </div>
 
-<div>
-  <%= form.label :flickr_username %>
-  <%= form.text_field :flickr_username %>
+<div class="row yui-gd">
+  <div class="yui-u first"><%= form.label :flickr_username %></div>
+  <div class="yui-u"><%= form.text_field :flickr_username %></div>
 </div>
 
-<div>
-<%= form.label :email %>
-<%= form.text_field :email %>
+<div class="row yui-gd">
+  <div class="yui-u first"><%= form.label :email %></div>
+  <div class="yui-u"><%= form.text_field :email %></div>
 </div>
 
-<div>
-  <%= form.label :password, form.object.new_record? ? nil : "Change password" %>
-  <%= form.password_field :password %>
+<div class="row yui-gd">
+  <div class="yui-u first"><%= form.label :password, form.object.new_record? ? nil : "Change password" %></div>
+  <div class="yui-u"><%= form.password_field :password %></div>
 </div>
 
-<div>
-<%= form.label :password_confirmation %>
-<%= form.password_field :password_confirmation %>
+<div class="row yui-gd">
+  <div class="yui-u first"><%= form.label :password_confirmation %></div>
+  <div class="yui-u"><%= form.password_field :password_confirmation %></div>
+</div>
+
+<div class="row yui-gd">
+  <div class="yui-u first"><%= form.label :first_name %></div>
+  <div class="yui-u"><%= form.text_field :first_name %></div>
+</div>
+
+<div class="row yui-gd">
+  <div class="yui-u first"><%= form.label :last_name %></div>
+  <div class="yui-u"><%= form.text_field :last_name %></div>
+</div>
+
+<div class="row yui-gd">
+  <div class="yui-u first"><%= form.label :bio %></div>
+  <div class="yui-u"><%= form.text_area :bio %></div>
 </div>
