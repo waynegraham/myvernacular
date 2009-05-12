@@ -39,6 +39,8 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
   
-  config.gem 'authlogic', :version=>'2.0.11'
+  config.gem 'authlogic', :version => '2.0.11'
+  config.gem 'nokogiri', :version => '1.2.3'
+  config.gem 'httparty', :version => '0.4.3'
   
 end
