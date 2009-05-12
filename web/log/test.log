@@ -1,4 +1,0 @@
-  [4;36;1mUser Exists (0.3ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."persistence_token" = '939f81f45d5be05a8cebd439479693216106148ec2e2c2d0f24e873a653ae85e1cefe482c0d8aba44ff4ebfcfe3764a3cb0b746a09a9eb0641d147b9bed076c8') LIMIT 1[0m
-  [4;35;1mUser Exists (0.1ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."single_access_token" = 'kRvEbBHMSMXO9NcaO7Fm') LIMIT 1[0m
-  [4;36;1mUser Exists (0.3ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."persistence_token" = '15c079c55c3029a715938b061e97524cb9dcb90b51acbdb971642b94f9ad649c7a4b29640059ebb6cd3fd0b40af963cbc4cfdfebaa2b13536f726a089a5ef415') LIMIT 1[0m
-  [4;35;1mUser Exists (0.1ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."single_access_token" = '1xbbu0Lxxkdwju_moYOK') LIMIT 1[0m
