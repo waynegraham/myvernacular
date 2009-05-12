@@ -41,6 +41,6 @@ Rails::Initializer.run do |config|
   
   config.gem 'authlogic', :version => '2.0.11'
   config.gem 'nokogiri', :version => '1.2.3'
-  config.gem 'httparty', :version => '0.4.3'
+  config.gem 'jnunemaker-httparty', :lib=>'httparty', :version => '0.4.3'
   
 end
