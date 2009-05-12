@@ -1,0 +1,12 @@
+one:
+  flickr_username: flickr1
+  first_name: Sam
+  last_name: Iam
+  email: user@user.com
+  login: user
+  crypted_password: f5b8ef4bffa2a1b51dc29a40809bacb05bc1e2ec595c120b36f29fdc1062462c4c706066d204c29ec4a23717ec038d86f454800e9537fb4e3f58a5107186c657
+  password_salt: 4eeTh4Kqdhc6hHI3k9KC
+  persistence_token: 1a522cbd275ba61a621ac756b46a5ac7af41c2696636295f91a7cbcfbc27b21cd9f06d7715a23c01058482e2fcc59f093d6aa84928678b09999b2038b254e6ce
+  single_access_token: A5r7YhqFXX32BQsgyTkG
+  perishable_token: sl0hz0XRuh_oBDKKLI1i
+  bio: I don't like green eggs, under any circumstances.

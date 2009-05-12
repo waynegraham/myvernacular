@@ -1,7 +1,8 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
-      t.string :flickr_username
+      t.string :flickr_username, :null=>false
+      
       t.string :first_name
       t.string :last_name
       t.text :bio
