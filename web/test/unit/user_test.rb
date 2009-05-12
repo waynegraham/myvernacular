@@ -1,8 +1,10 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  
+  test "the flickr_username required validation" do
+    u = User.create
+    assert_equal "can't be blank", u.errors['flickr_username']
   end
+  
 end
