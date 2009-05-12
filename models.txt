@@ -1,0 +1,70 @@
+user
+	flickr_username
+	first_name
+	last_name
+	username
+	password
+	bio
+
+image (generic table so we can track which photos have NOT been assigned)
+	flickr_id
+
+image_tags
+	image_id
+	tag
+
+building
+	user_id
+	name
+	country
+	state
+	city
+	lat
+	lon
+
+building_notes
+	building_id
+	user_id
+	notes
+
+building_architects
+	building_id
+	name (person, business?)
+
+building_original_owners
+	building_id
+	owner (person, business?)
+
+building_names
+	building_id
+	user_id
+	name
+	start_date
+	end_end
+
+building_images
+	building_id
+	image_id
+	user_id
+	building_phase_id (optional)
+	view_type
+	notes
+
+building_phases
+	building_id
+	start_date
+	start_date_offset
+	end_date
+	end_date_offset
+
+building_phase_notes
+	building_phase_id
+	user_id
+	notes
+
+user_flickr_query -> stored in session object (db back-end)
+	keywords
+	page
+
+image_bucket (not a database table)
+	(images that have been imported, but not assigned to a building)
