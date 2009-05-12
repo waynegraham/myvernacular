@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   
+  # should do resource_controller here!
+  
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update]
   
