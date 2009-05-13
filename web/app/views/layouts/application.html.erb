@@ -16,10 +16,14 @@
       <div id="hd" role="banner">
         <div class="yui-g">
           <div class="yui-u first">
-            <%= link_to 'My Vernacular', root_path %>
+            <h1><%= link_to 'My Vernacular', root_path %></h1>
           </div>
           <div class="yui-u">
-            <%= link_to "My Profile", account_path %>
+            <% if current_user %>
+              <%= link_to "My Profile", account_path %>
+            <% else %>
+              <%= link_to "Sign up!", new_account_path %>
+            <% end %>
           </div>
         </div>
       </div>

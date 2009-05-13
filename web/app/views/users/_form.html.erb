@@ -1,39 +1,39 @@
 <div class="row yui-gd">
-  <div class="yui-u first"><%= form.label :login %></div>
-  <div class="yui-u"><%= form.text_field :login %></div>
+  <div class="yui-u first"><%= f.label :login %></div>
+  <div class="yui-u"><%= f.text_field :login %></div>
 </div>
 
 <div class="row yui-gd">
-  <div class="yui-u first"><%= form.label :flickr_username %></div>
-  <div class="yui-u"><%= form.text_field :flickr_username %></div>
+  <div class="yui-u first"><%= f.label :flickr_username %></div>
+  <div class="yui-u"><%= f.text_field :flickr_username %></div>
 </div>
 
 <div class="row yui-gd">
-  <div class="yui-u first"><%= form.label :email %></div>
-  <div class="yui-u"><%= form.text_field :email %></div>
+  <div class="yui-u first"><%= f.label :email %></div>
+  <div class="yui-u"><%= f.text_field :email %></div>
 </div>
 
 <div class="row yui-gd">
-  <div class="yui-u first"><%= form.label :password, form.object.new_record? ? nil : "Change password" %></div>
-  <div class="yui-u"><%= form.password_field :password %></div>
+  <div class="yui-u first"><%= f.label :password, f.object.new_record? ? nil : "Change password" %></div>
+  <div class="yui-u"><%= f.password_field :password %></div>
 </div>
 
 <div class="row yui-gd">
-  <div class="yui-u first"><%= form.label :password_confirmation %></div>
-  <div class="yui-u"><%= form.password_field :password_confirmation %></div>
+  <div class="yui-u first"><%= f.label :password_confirmation %></div>
+  <div class="yui-u"><%= f.password_field :password_confirmation %></div>
 </div>
 
 <div class="row yui-gd">
-  <div class="yui-u first"><%= form.label :first_name %></div>
-  <div class="yui-u"><%= form.text_field :first_name %></div>
+  <div class="yui-u first"><%= f.label :first_name %></div>
+  <div class="yui-u"><%= f.text_field :first_name %></div>
 </div>
 
 <div class="row yui-gd">
-  <div class="yui-u first"><%= form.label :last_name %></div>
-  <div class="yui-u"><%= form.text_field :last_name %></div>
+  <div class="yui-u first"><%= f.label :last_name %></div>
+  <div class="yui-u"><%= f.text_field :last_name %></div>
 </div>
 
 <div class="row yui-gd">
-  <div class="yui-u first"><%= form.label :bio %></div>
-  <div class="yui-u"><%= form.text_area :bio %></div>
+  <div class="yui-u first"><%= f.label :bio %></div>
+  <div class="yui-u"><%= f.text_area :bio %></div>
 </div>

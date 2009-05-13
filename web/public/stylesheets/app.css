@@ -35,18 +35,23 @@ a{
 	background-color:#333;
 	padding:1em;
 }
+	#hd a{
+		color:white;
+	}
+	#hd h1{
+		margin:0;
+		font-weight:normal;
+		letter-spacing:.5em;
+	}
+		#hd h1 a {
+			text-decoration:none;
+		}
 	#hd .yui-u{
 		text-align:right;
 	}
 	#hd .yui-u.first{
 		text-align:left;
-		font-weight:bold;
-		letter-spacing:.5em;
 	}
-		#hd .first a{
-			text-decoration:none;
-			color:white;
-		}
 
 #yui-main>.yui-b>.yui-g{
 	width:786px;
@@ -76,3 +81,19 @@ a{
 			width:48%;
 		}
 
+legend{
+	letter-spacing:.5em;
+	background-color:#ADF;
+	padding:.2em;
+	border:dotted 1px gray;
+}
+
+.errorExplanation{
+	padding:.5em;
+	border:solid 1px darkred;
+	background-color:lightyellow;
+	margin-top:1em;
+}
+	.errorExplanation h2{
+		margin:0;
+	}

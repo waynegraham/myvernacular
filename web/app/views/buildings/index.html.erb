@@ -1,3 +1,11 @@
 <h1>Buildings</h1>
 
 <%= link_to 'create new building', new_building_path %>
+
+<hr/>
+
+<div id="buidingsList">
+  <% @buildings.each do |building| %>
+    <div><%= link_to building.name, building_path(building) %></div>
+  <% end %>
+</div>

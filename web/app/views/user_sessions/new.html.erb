@@ -1,14 +1,35 @@
-<h1>Login</h1>
- 
 <% form_for @user_session, :url => user_session_path, :html=>{:class=>:form} do |f| %>
-  <%= f.error_messages %>
-  <%= f.label :login %><br />
-  <%= f.text_field :login %><br />
-  <br />
-  <%= f.label :password %><br />
-  <%= f.password_field :password %><br />
-  <br />
-  <%= f.check_box :remember_me %><%= f.label :remember_me %><br />
-  <br />
-  <%= f.submit "Login", :class=>:submit %>
+  
+  <fieldset>
+    
+    <legend>Login</legend>
+    
+    <%= f.error_messages %>
+  
+    <div class="row yui-gd">
+      <div class="yui-u first"><%= f.label :login %></div>
+      <div class="yui-u"><%= f.text_field :login %></div>
+    </div>
+  
+    <div class="row yui-gd">
+      <div class="yui-u first"><%= f.label :password %></div>
+      <div class="yui-u"><%= f.password_field :password %></div>
+    </div>
+  
+    <div class="row yui-gd">
+      <div class="yui-u first"><%= f.label :password %></div>
+      <div class="yui-u"><%= f.password_field :password %></div>
+    </div>
+  
+    <div class="row yui-gd">
+      <div class="yui-u first"><%= f.label :remember_me %></div>
+      <div class="yui-u"><%= f.check_box :remember_me %></div>
+    </div>
+  
+    <div class="row yui-gd">
+      <div class="yui-u"><%= f.submit 'Login', :class=>:submit %></div>
+    </div>
+  
+  </fieldset>
+  
 <% end %>
