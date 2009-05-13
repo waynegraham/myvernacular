@@ -58,10 +58,21 @@ a{
 }
 
 .form{
-	border:solid 1px #666;
-	padding:1em;
+/*	border:solid 1px #666;
+	padding:1em;*/
 }
+	.form fieldset{
+		border:solid 1px #666;
+	}
 
+		.form fieldset legend{
+			letter-spacing:.5em;
+			background-color:#ADF;
+			padding:.2em;
+			border:dotted 1px gray;
+			margin-left:-1px;
+		}
+	
 	.form div.row{
 		float:none;
 		margin:1em;
@@ -81,16 +92,11 @@ a{
 			width:48%;
 		}
 
-legend{
-	letter-spacing:.5em;
-	background-color:#ADF;
-	padding:.2em;
-	border:dotted 1px gray;
-}
-
 .errorExplanation{
 	padding:.5em;
 	border:solid 1px darkred;
+	border-left:none;
+	border-right:none;
 	background-color:lightyellow;
 	margin-top:1em;
 }

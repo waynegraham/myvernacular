@@ -1,13 +1,12 @@
-<h1>Edit My Account</h1>
-
 <% form_for @user, :url => {:action=>:update}, :html=>{:class=>:form} do |f| %>
   
-  <%= f.error_messages %>
-  
-  <%= render "form", :f => f %>
-  
-  <div class="row yui-gd">
-    <div class="yui-u"><%= f.submit "Update", :class=>:submit %></div>
-  </div>
+  <fieldset>
+    <legend>Edit My Account</legend>
+    <%= f.error_messages %>
+    <%= render "form", :f => f %>
+    <div class="row yui-gd">
+      <div class="yui-u"><%= f.submit "Update", :class=>:submit %></div>
+    </div>
+  </fieldset>
   
 <% end %>
