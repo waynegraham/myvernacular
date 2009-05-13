@@ -1,7 +1,10 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+building_a:
+  user: sam_iam
+  name: Building A
+  country: United States of America
+  state: Virginia
+  city: Richmond
+  lat: 10.00
+  lon: 10.00
