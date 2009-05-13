@@ -1,0 +1,2 @@
+class BuildingNotesController < ApplicationController
+end

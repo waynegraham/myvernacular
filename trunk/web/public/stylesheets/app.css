@@ -1,7 +1,7 @@
 html{
 	font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
-	background-color:black;
-	color:#DDD;
+	background-color:white;
+	color:#333;
 }
 
 body{
@@ -25,10 +25,10 @@ body{
 }
 
 a{
-	color:orange;
+	color:#159;
 }
 	a:hover{
-		color:yellow;
+		color:#8BF;
 	}
 
 #hd{
@@ -48,9 +48,12 @@ a{
 			color:white;
 		}
 
+#yui-main>.yui-b>.yui-g{
+	width:786px;
+}
+
 .form{
-	background-color:#111;
-	border:solid 1px #222;
+	border:solid 1px #666;
 	padding:1em;
 }
 
@@ -64,10 +67,11 @@ a{
 			.form div.row .first label{
 				font-weight:bold;
 			}
-
+		/* labels (left column) */
 		.form .yui-gd .yui-u{
 			width:50%;
 		}
+		/* form input elements (right column) */
 		.form .yui-gd .yui-u.first{
 			width:48%;
 		}
