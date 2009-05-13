@@ -1,11 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :building_notes
-
-  map.resources :buildings
   
   map.resource :account, :controller => "users"
   
-  map.resources :users
+  map.resources :buildings do |bmap|
+    bmap.resources :notes, :controller=>'building_notes'
+  end
+  
+  map.resources :users do |umap|
+    umap.resources :buildings
+  end
   
   map.resource :user_session
   

@@ -1,0 +1,33 @@
+<%= f.error_messages %>
+
+<%= f.hidden_field :user_id, :value=>current_user.id %>
+
+<div class="row yui-gd">
+  <div class="yui-u first"><%= f.label :name %></div>
+  <div class="yui-u"><%= f.text_field :name %></div>
+</div>
+
+<div class="row yui-gd">
+  <div class="yui-u first"><%= f.label :city %></div>
+  <div class="yui-u"><%= f.text_field :city %></div>
+</div>
+
+<div class="row yui-gd">
+  <div class="yui-u first"><%= f.label :state %></div>
+  <div class="yui-u"><%= f.text_field :state %></div>
+</div>
+
+<div class="row yui-gd">
+  <div class="yui-u first"><%= f.label :country %></div>
+  <div class="yui-u"><%= f.text_field :country %></div>
+</div>
+
+<div class="row yui-gd">
+  <div class="yui-u first"><%= f.label :latitude %></div>
+  <div class="yui-u"><%= f.text_field :lat %></div>
+</div>
+
+<div class="row yui-gd">
+  <div class="yui-u first"><%= f.label :longitude %></div>
+  <div class="yui-u"><%= f.text_field :lon %></div>
+</div>

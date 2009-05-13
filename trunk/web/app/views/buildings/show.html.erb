@@ -1,0 +1,16 @@
+<h2>Building: "<%= h @building.name %>"</h2>
+
+<dl>
+  <div>
+    <dt>Location</dt>
+    <dd><%= h @building.city %>, <%= h @building.state %> <%= h @building.country %></dd>
+  </div>
+  <div>
+    <dt>Latitude</dt>
+    <dd><%= h @building.lat %></dd>
+  </div>
+  <div>
+    <dt>Longitude</dt>
+    <dd><%= h @building.lon %></dd>
+  </div>
+</dl>
