@@ -1,7 +1,10 @@
-<h1>Register</h1>
- 
 <% form_for @user, :url => account_path, :html=>{:class=>:form} do |f| %>
-  <%= f.error_messages %>
-  <%= render "form", :f => f %>
-  <%= f.submit "Register", :class=>:submit %>
+  
+  <fieldset>
+    <legend>Register</legend>
+    <%= f.error_messages %>
+    <%= render "form", :f => f %>
+    <%= f.submit "Register", :class=>:submit %>
+  </fieldset>
+  
 <% end %>
