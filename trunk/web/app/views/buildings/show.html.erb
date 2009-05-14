@@ -1,16 +1,103 @@
-<h2>Building: "<%= h @building.name %>"</h2>
+<style type="text/css">
+#flickrSearch .yui-g{
+  width:100%;
+  margin-bottom:1em;
+}
+#flickrSearch .yui-u {
+  text-align:right;
+}
+#flickrSearch .yui-u.first{
+  text-align:left;
+}
+#q{
+  width:95%;
+}
 
-<dl>
-  <div>
-    <dt>Location</dt>
-    <dd><%= h @building.city %>, <%= h @building.state %> <%= h @building.country %></dd>
+#responsePhotosContainer{
+  background-color:#EFEFEF;
+  padding:1em;
+}
+  #responsePhotos ul{
+    
+  }
+  #responsePhotos ul li {
+    list-style:none;
+    float:left;
+    margin:.5em 1em;
+  }
+</style>
+
+<%= stylesheet_link_tag javascript_path('jquery_pagination/lib/jquery_pagination/pagination.css') %>
+<%= javascript_include_tag 'flickr', 'jquery_pagination/lib/jquery_pagination/jquery.pagination.js' %>
+
+<script type="text/javascript">
+
+$(function(){
+  
+  function rebuildPagination(total_pages, opts){
+    $("#Pagination").pagination(total_pages, opts);
+  }
+  
+  function pageselectCallback(page_index, jq){
+    flickrSearch(page_index + 1, false);
+  }
+  
+  function flickrSearch(current_page, init){
+    $('#responsePhotos').html('loading...');
+    var flickr_opts = {
+      api_key : "1edf82849f92451c641dcfd7203d13de",
+      type : 'search',
+      user_id : "7240095@N02",
+      text : $('#q').attr('value'),
+      per_page : 20,
+      page : current_page,
+      callback : function(d){
+        pagination_opts = {
+          callback: function(page_index, jq){
+            if( init){
+              pageselectCallback(page_index, jq);
+            }
+          },
+          items_per_page : 20,
+          num_display_entries : 10,
+          num_edge_entries : 2
+        }
+        if(init){
+          rebuildPagination($('#fPages').val(), pagination_opts);
+        }
+      }
+    };
+    $('#responsePhotos').flickr(flickr_opts);
+  }
+  
+  $('#flickrSearch .yui-g form').submit(function(){
+    flickrSearch(1, true);
+    return false;
+  })
+  
+});
+</script>
+
+<div id="flickrSearch">
+  
+  <div class="yui-g">
+    <% form_tag do %>
+      <div class="yui-u first">
+        <%= text_field_tag :q %>
+      </div>
+      <div class="yui-u">
+        <%= submit_tag 'find' %>
+      </div>
+    <% end %>
   </div>
-  <div>
-    <dt>Latitude</dt>
-    <dd><%= h @building.lat %></dd>
+  
+  <div id="Pagination" class="pagination"></div>
+  
+  <br style="clear:both;"/>
+  
+  <div id="responsePhotosContainer">
+    <div id="responsePhotos"></div>
+    <br style="clear:both;"/>
   </div>
-  <div>
-    <dt>Longitude</dt>
-    <dd><%= h @building.lon %></dd>
-  </div>
-</dl>
+  
+</div>
