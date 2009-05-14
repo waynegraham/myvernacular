@@ -31,3 +31,11 @@
   <div class="yui-u first"><%= f.label :lon, 'Longitude' %></div>
   <div class="yui-u"><%= f.text_field :lon %></div>
 </div>
+
+<% f.fields_for :notes do |notesf| %>
+  <%= notesf.hidden_field :user_id, :value=>current_user.id %>
+  <div class="row yui-gd">
+    <div class="yui-u first"><%= notesf.label :notes %></div>
+    <div class="yui-u"><%= notesf.text_area :notes %></div>
+  </div>
+<% end %>

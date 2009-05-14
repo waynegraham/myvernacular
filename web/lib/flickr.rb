@@ -4,7 +4,7 @@ require 'rubygems'
 require 'httparty'
 
 # http://github.com/tenderlove/nokogiri/tree/master
-require 'nokogiri'
+require 'json'
 
 class Flickr
   
@@ -12,7 +12,7 @@ class Flickr
     
     include HTTParty
     
-    format :xml
+    format :json
     
     base_uri 'http://api.flickr.com/services/rest'
     
