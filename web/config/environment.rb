@@ -44,3 +44,5 @@ Rails::Initializer.run do |config|
   config.gem 'jnunemaker-httparty', :lib=>'httparty', :version => '0.4.3'
   
 end
+
+FLICKR_API_KEY = ''

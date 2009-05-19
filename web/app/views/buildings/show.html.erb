@@ -1,4 +1,9 @@
 <style type="text/css">
+#flickrQuery{
+	background-color:#FB9;
+	padding:.1em;
+	margin-top:1em;
+}
 #flickrSearch .yui-g{
   width:100%;
   margin-bottom:1em;
@@ -28,52 +33,106 @@
 </style>
 
 <%= stylesheet_link_tag javascript_path('jquery_pagination/lib/jquery_pagination/pagination.css') %>
-<%= javascript_include_tag 'flickr', 'jquery_pagination/lib/jquery_pagination/jquery.pagination.js' %>
+<%= javascript_include_tag 'get_sleep.jquery.js', 'flickr_client.jquery.js', 'jquery_pagination/lib/jquery_pagination/jquery.pagination.js' %>
 
 <script type="text/javascript">
 
 $(function(){
-  
-  function rebuildPagination(total_pages, opts){
-    $("#Pagination").pagination(total_pages, opts);
-  }
-  
-  function pageselectCallback(page_index, jq){
-    flickrSearch(page_index + 1, false);
-  }
-  
-  function flickrSearch(current_page, init){
-    $('#responsePhotos').html('loading...');
-    var flickr_opts = {
-      api_key : "1edf82849f92451c641dcfd7203d13de",
-      type : 'search',
-      user_id : "7240095@N02",
-      text : $('#q').attr('value'),
-      per_page : 20,
-      page : current_page,
-      callback : function(d){
-        pagination_opts = {
-          callback: function(page_index, jq){
-            if( init){
-              pageselectCallback(page_index, jq);
-            }
-          },
-          items_per_page : 20,
+	
+	var flickr = new FlickrClient('<%= FLICKR_API_KEY %>');
+	
+	var default_per_page = 5;
+	
+	function paginate(total_pages, cb){
+		pagination_opts = {
+          callback : cb,
+          items_per_page : default_per_page,
           num_display_entries : 10,
           num_edge_entries : 2
         }
-        if(init){
-          rebuildPagination($('#fPages').val(), pagination_opts);
-        }
-      }
-    };
-    $('#responsePhotos').flickr(flickr_opts);
-  }
-  
-  $('#flickrSearch .yui-g form').submit(function(){
-    flickrSearch(1, true);
-    return false;
-  })
+        $("#Pagination").pagination(total_pages, pagination_opts);
+	}
+	
+	var PHOTO_SIZE = 'm';
+	var THUMB_SIZE = 's';
+	var ATTR = '';
+	
+	function buildPhotoSet(response, service_info){
+		$('#responsePhotos').html('');
+		var list = $('#responsePhotos');
+		$(response.photos.photo).each(function(i,photo){
+			// format thumbnail url
+			var t = 'http://farm'+photo['farm'] + '.static.flickr.com/';
+			t += photo['server'] + '/' + photo['id'] + '_' + photo['secret'] + '_' + THUMB_SIZE + '.jpg';
+			//format image url
+			var h = 'http://farm' + photo['farm'] + '.static.flickr.com/';
+			h += photo['server'] + '/' + photo['id'] + '_';
+			switch (PHOTO_SIZE){
+				case 'm':
+					h += photo['secret'] + '_m.jpg';
+					break;
+				case 'b':
+					h += photo['secret'] + '_b.jpg';
+					break;
+	            case 'o':
+					if (photo['originalsecret'] && photo['originalformat']) {
+						h += photo['originalsecret'] + '_o.' + photo['originalformat'];
+					} else {
+						h += photo['secret'] + '_b.jpg';
+					};
+					break;
+				default:
+					h += photo['secret'] + '.jpg';
+			};
+			list.append('<li><a href="'+h+'" '+ATTR+' title="'+photo['title']+'"><img src="'+t+'" alt="'+photo['title']+'" /></a></li>');
+		});
+	}
+	
+	function photoSearch(params, callback){
+		var search_opts = {
+			text : $('#q').val(),
+			per_page : default_per_page,
+			page : 1
+		};
+		var final_params = $.extend(search_opts, params);
+		flickr.get('photos.search', final_params, function(response, service_info){
+			$('#flickrQuery').html(service_info.query);
+			callback(response, service_info);
+		});
+	}
+	
+	function newFlickrSearch(){
+		var paginating_search_callback = function(response, service_info){
+			if(response.stat == 'fail'){
+				alert(response.message + " Try setting a query or username");
+				return;
+			}else{
+				paginate(response.photos.pages, function(page_index, container){
+					photoSearch({page : (page_index+1)}, buildPhotoSet);
+				});
+			}
+		}
+		// search with the userid...
+		var username = $('#flickrUsername').val();
+		if( username.length > 0){
+			flickr.get('people.findByUsername', {username : username}, function(response){
+				if(response.stat=='fail'){
+					alert(response.message);
+				}else{
+					photoSearch({user_id : response.user.id}, paginating_search_callback);
+				}
+			});
+		}else{
+			photoSearch({}, paginating_search_callback);
+		}
+	}
+	
+	$('#flickrSearch .yui-g form').submit(function(){
+		$('#responsePhotos').html('');
+		newFlickrSearch();
+		return false;
+	});
+	
   
 });
 </script>
@@ -84,6 +143,9 @@ $(function(){
     <% form_tag do %>
       <div class="yui-u first">
         <%= text_field_tag :q %>
+      </div>
+	<div class="yui-u">
+        <%= label :flickerUsername, 'username (optional)' %><%= text_field_tag :flickrUsername %>
       </div>
       <div class="yui-u">
         <%= submit_tag 'find' %>
@@ -96,8 +158,10 @@ $(function(){
   <br style="clear:both;"/>
   
   <div id="responsePhotosContainer">
-    <div id="responsePhotos"></div>
+    <ul id="responsePhotos"></ul>
     <br style="clear:both;"/>
   </div>
   
 </div>
+
+<div id="flickrQuery"></div>
