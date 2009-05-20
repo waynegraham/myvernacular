@@ -1,4 +1,4 @@
-function GetSleep(user_opts){
+function GetREST(user_opts){
 	
 	var $ = jQuery;
 	
