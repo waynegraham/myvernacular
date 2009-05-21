@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   
+  map.flickr_photos 'flickr/photos', :controller => 'flickr', :action => 'photos'
+  
   map.resource :account, :controller => "users"
   
   map.resources :buildings do |bmap|

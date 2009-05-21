@@ -1,5 +1,5 @@
 html{
-	font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+	font-family:Helvetica,Arial,"Lucida Sans Unicode",Tahoma,Verdana,Arial,Helvetica,sans-serif;
 	background-color:white;
 	color:#333;
 }
@@ -15,6 +15,7 @@ body{
 
 #bd{
 	margin:1em 0;
+	padding:1em;
 }
 
 #ft{
@@ -52,10 +53,6 @@ a{
 	#hd .yui-u.first{
 		text-align:left;
 	}
-
-#yui-main>.yui-b>.yui-g{
-	width:786px;
-}
 
 .form{
 /*	border:solid 1px #666;
