@@ -5,33 +5,35 @@
 	<%= javascript_include_tag 'get_rest.jquery.js', 'jquery_pagination/lib/jquery_pagination/jquery.pagination.js', 'buildings' %>
 <% end %>
 
-<div id="search">
-
-	<div class="yui-gb">
-		<% form_tag do %>
-			<div class="yui-u first">
-				<%= label :q, 'search' %>: <%= text_field_tag :q %>
-			</div>
-			<div class="yui-u">
-				<%= label :username, 'user' %><%= text_field_tag :username %>
-			</div>
-			<div class="yui-u">
-				<%= submit_tag 'find' %>
-			</div>
-		<% end %>
-	</div>
+<div id="search" class="container">
+	<% form_tag do %>
+		<div class="left">
+			<%= label :q, 'search' %>: <%= text_field_tag :q %>
+		</div>
+		<div class="left">
+			<%= label :username, 'user' %><%= text_field_tag :username %>
+		</div>
+		<div class="left">
+			<%= submit_tag 'find' %>
+		</div>
+	<% end %>
 </div>
 
-<div class="yui-g">
-	<div class="yui-u first">
-		<div>
-			<div id="Pagination" class="pagination"></div>
-			<div id="loadIndicator"><%= image_tag 'ajax-loader.gif' %></div>
-			<br style="clear:both;"/>
+<div class="container">
+	<div id="controls" class="left">
+		<div class="container">
+			<div class="left">
+				<div class="pagination container">
+					<div id="Pagination"></div>
+				</div>
+			</div>
+			<div class="right">
+				<%= image_tag 'ajax-loader.gif', :id=>'loadIndicator'%>
+			</div>
 		</div>
-		<div class="container" id="responseContainer"></div>
+		<div id="photoSets"></div>
 	</div>
-	<div class="yui-u">
+	<div class="right">
 		<div id="photoBucket"></div>
 	</div>
 </div>

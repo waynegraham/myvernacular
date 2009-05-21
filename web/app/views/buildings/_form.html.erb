@@ -2,40 +2,40 @@
 
 <%= f.hidden_field :user_id, :value=>current_user.id %>
 
-<div class="row yui-gd">
-  <div class="yui-u first"><%= f.label :name %></div>
-  <div class="yui-u"><%= f.text_field :name %></div>
+<div class="row">
+	<div class="left"><%= f.label :name %></div>
+	<div class="right"><%= f.text_field :name %></div>
 </div>
 
-<div class="row yui-gd">
-  <div class="yui-u first"><%= f.label :city %></div>
-  <div class="yui-u"><%= f.text_field :city %></div>
+<div class="row">
+	<div class="left"><%= f.label :city %></div>
+	<div class="right"><%= f.text_field :city %></div>
 </div>
 
-<div class="row yui-gd">
-  <div class="yui-u first"><%= f.label :state %></div>
-  <div class="yui-u"><%= f.text_field :state %></div>
+<div class="row">
+	<div class="left"><%= f.label :state %></div>
+	<div class="right"><%= f.text_field :state %></div>
 </div>
 
-<div class="row yui-gd">
-  <div class="yui-u first"><%= f.label :country %></div>
-  <div class="yui-u"><%= f.text_field :country %></div>
+<div class="row">
+	<div class="left"><%= f.label :country %></div>
+	<div class="right"><%= f.text_field :country %></div>
 </div>
 
-<div class="row yui-gd">
-  <div class="yui-u first"><%= f.label :lat, 'Latitude' %></div>
-  <div class="yui-u"><%= f.text_field :lat %></div>
+<div class="row">
+	<div class="left"><%= f.label :lat, 'Latitude' %></div>
+	<div class="right"><%= f.text_field :lat %></div>
 </div>
 
-<div class="row yui-gd">
-  <div class="yui-u first"><%= f.label :lon, 'Longitude' %></div>
-  <div class="yui-u"><%= f.text_field :lon %></div>
+<div class="row">
+	<div class="left"><%= f.label :lon, 'Longitude' %></div>
+	<div class="right"><%= f.text_field :lon %></div>
 </div>
 
 <% f.fields_for :notes do |notesf| %>
-  <%= notesf.hidden_field :user_id, :value=>current_user.id %>
-  <div class="row yui-gd">
-    <div class="yui-u first"><%= notesf.label :notes %></div>
-    <div class="yui-u"><%= notesf.text_area :notes %></div>
-  </div>
+	<%= notesf.hidden_field :user_id, :value=>current_user.id %>
+	<div class="row">
+		<div class="left"><%= notesf.label :notes %></div>
+		<div class="right"><%= notesf.text_area :notes %></div>
+	</div>
 <% end %>

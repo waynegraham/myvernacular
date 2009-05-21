@@ -1,15 +1,15 @@
-<% form_for setup_building(@building), :url=>{:action=>:create}, :html=>{:class=>:form} do |f| %>
-  
-  <fieldset>
-  
-    <legend>New Buiding</legend>
-  
-    <%= render 'form', :f=>f %>
-  
-    <div class="row yui-gd">
-      <div class="yui-u"><%= f.submit 'Create Building', :class=>:submit %></div>
-    </div>
-    
-  </fieldset>
-  
+<% form_for setup_building(@building), :url=>{:action=>:create}, :html=>{:class=>'form'} do |f| %>
+
+	<fieldset>
+
+		<legend>New Buiding</legend>
+		
+		<%= render 'form', :f=>f %>
+		<div class="row">
+			<div class="left">&nbsp;</div>
+			<div class="right"><%= f.submit 'Create Building', :class=>:submit %></div>
+		</div>
+		
+	</fieldset>
+	
 <% end %>
