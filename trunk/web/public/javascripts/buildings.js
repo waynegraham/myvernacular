@@ -4,7 +4,7 @@ $(function(){
 	* the event handler for a "div.set div.photo" click
 	*/
 	function photoClick(){
-		var img = $('<img />');
+		var img = $('<img class="photo" />');
 		img.attr('src', $('img', this).attr('alt'));
 		$('#photoBucket').html(img);
 	}
@@ -17,7 +17,7 @@ $(function(){
 		pagination_opts = {
           callback : callback,
           items_per_page : per_page,
-          num_display_entries : 5,
+          num_display_entries : 4,
           num_edge_entries : 1
         }
         $("#Pagination").pagination(total_pages, pagination_opts);
@@ -27,9 +27,8 @@ $(function(){
 	* and applies behaviors to the .photo items
 	*/
 	function insertPhotoSetAndApplyBehaviors(container, data){
-		var new_set = $('<div class="set"/>').html(data);
-		container.html(new_set);
-		$('.photo', new_set).click(photoClick);
+		container.html(data);
+		$('div.photoItem', container).click(photoClick);
 	}
 	
 	/* This gets called after a successful response has been
@@ -39,8 +38,8 @@ $(function(){
 	* insertPhotoSetAndApplyBehaviors is called and passed the new div.set
 	*/
 	function applyResponse(data){
-		var container = $('#responseContainer');
-		var current_set = $('div.set', container);
+		var container = $('#photoSets');
+		var current_set = $('div.photoSet', container);
 		if(current_set.length > 0){
 			current_set.fadeOut('medium', function(){
 				insertPhotoSetAndApplyBehaviors(container, data);

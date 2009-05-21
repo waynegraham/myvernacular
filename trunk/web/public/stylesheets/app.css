@@ -8,8 +8,8 @@ body{
 	margin:0;
 }
 
-div.container {
-	overflow: auto;
+div.container, form div.row {
+	overflow: hidden;
 	width: 100%
 }
 
@@ -20,20 +20,28 @@ div.left{
 
 div.right{
 	float:left;
-	width:48%;
+	width:52%;
 }
 
-#doc4{
+/* the primary div inside of the body tag */
+#page{
 	border:solid 1px gray;
 	border-top:none;
+	width:970px;
+	margin:0 auto;
 }
 
-#bd{
-	margin:1em 0;
-	padding:1em;
+/* the main page body, below the header, above the footer */
+#content{
+	width:95%;
+	margin:.5em auto;
+	border:solid 1px #BCBCBC;
+	border-top:none;
+	border-bottom:none;
+	padding:.5em;
 }
 
-#ft{
+#footer{
 	background-color:#333;
 	padding:.5em;
 	color:white;
@@ -47,26 +55,23 @@ a{
 		color:#8BF;
 	}
 
-#hd{
+#header{
 	background-color:#333;
 	padding:1em;
 }
-	#hd a{
+	#header a{
 		color:white;
 	}
-	#hd h1{
+	#header h1{
 		margin:0;
 		font-weight:normal;
 		letter-spacing:.5em;
 	}
-		#hd h1 a {
+		#header h1 a {
 			text-decoration:none;
 		}
-	#hd .yui-u{
+	#header .right{
 		text-align:right;
-	}
-	#hd .yui-u.first{
-		text-align:left;
 	}
 
 .form{
@@ -76,7 +81,6 @@ a{
 	.form fieldset{
 		border:solid 1px #666;
 	}
-
 		.form fieldset legend{
 			letter-spacing:.5em;
 			background-color:#ADF;
@@ -86,23 +90,16 @@ a{
 		}
 	
 	.form div.row{
-		float:none;
-		margin:1em;
+		margin-bottom:1em;
 	}
-		.form div.row .first{
+		.form div.row .left{
+			width:30%;
 			text-align:right;
+			margin-right:1em;
 		}
-			.form div.row .first label{
+			.form div.row .left label{
 				font-weight:bold;
 			}
-		/* labels (left column) */
-		.form .yui-gd .yui-u{
-			width:50%;
-		}
-		/* form input elements (right column) */
-		.form .yui-gd .yui-u.first{
-			width:48%;
-		}
 
 .errorExplanation{
 	padding:.5em;
@@ -115,3 +112,7 @@ a{
 	.errorExplanation h2{
 		margin:0;
 	}
+
+.photo{
+	border:solid 1px #000;
+}

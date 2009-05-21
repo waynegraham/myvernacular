@@ -1,50 +1,57 @@
-.photoFullUrl{
-	display:none;
-}
+.paginationMeta{display:none;}
 
-#paginationMeta{display:none;}
-
-#photoset{
+.photoSet{
 	
 }
-	#photoset .photo{
+	.photoSet .photoItem{
 		width: 75px;
-		float:left;
+		margin-right:1em;
+		margin-bottom:.7em;
 	}
-		#photoset .photo img{
-			border:solid 1px #000;
-		}
-		#photoset .photo img:hover{
+		.photoSet .photo:hover{
 			border:solid 1px #999;
 		}
 
 #loadIndicator{
-	float:right;
-	margin-top:5px;
+	margin-right:.5em;
 }
 
 #photoBucket{
-	margin-left:2em;
-	margin-top:2em;
+	margin-top:1em;
 	padding:1em;
 }
 
-#responseContainer{
-	padding:1em;
-	background-color:#000;
-	padding-left:17px;
+	#photoBucket img{
+		max-width:464px;
+		max-height:342px;
+	}
+
+#search{
+	margin-bottom:1em;
+}
+	#search .left {
+		text-align:right;
+		width:33%;
+		text-align:left;
+	}
+
+#controls>.container>.left{
+	width:85%;
+}
+#controls>.container>.right{
+	width:13%;
+	text-align:right;
 }
 
-#search .yui-gb{
-  width:100%;
-  margin-bottom:1em;
-}
-#search .yui-u {
-  text-align:right;
-}
-#search .yui-u.first{
-  text-align:left;
-}
 #q{
 
+}
+
+.pagination .current{
+	background-color:#666;
+	border:1px solid #333;
+}
+.pagination a{
+	color:#333;
+	border:1px solid #666;
 }

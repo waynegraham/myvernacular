@@ -1,49 +1,50 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-	"http://www.w3.org/TR/html4/strict.dtd">
+"http://www.w3.org/TR/html4/strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  
-  <head>
-  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  	<title><%= h @document_title %></title>
-	<%= stylesheet_link_tag 'yui-grids', 'yui-base', 'app' %>
-	<% html_top_items.each do |item| %><%= item %><% end %>
-  </head>
-  
-  <body>
-    
-    <div id="doc4" class="yui-t1">
-      <div id="hd" role="banner">
-        <div class="yui-gb">
-          <div class="yui-u first">
-            <h1><%= link_to 'My Vernacular', root_path %></h1>
-          </div>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title><%= h @document_title %></title>
+		<%= stylesheet_link_tag 'yui', 'app' -%>
+		<% html_top_items.each do |item| %><%= item -%><% end %>
+	</head>
+
+	<body>
+
+		<div id="page" class="container">
 			
-			<div class="yui-u">
-				<%= link_to_unless_current 'buildings', buildings_path %>
+			<div id="header" role="banner">
+				<div class="container">
+					
+					<div class="left first">
+						<h1><%= link_to 'My Vernacular', root_path %></h1>
+					</div>
+					
+					<div class="right">
+						<%= link_to_unless_current 'Buildings', buildings_path %> | 
+						<% if current_user %>
+						<%= link_to "My Profile", account_path %>
+						<% else %>
+						<%= link_to "Sign up!", new_account_path %>
+						<% end %>
+					</div>
+					
+				</div>
 			</div>
 			
-          <div class="yui-u">
-            
-			<% if current_user %>
-              <%= link_to "My Profile", account_path %>
-            <% else %>
-              <%= link_to "Sign up!", new_account_path %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <div id="bd" role="main">
-        <%= yield %>
-      </div>
-      <div id="ft" role="contentinfo">
-        Copyright &#169; 2009 XYZ
-      </div>
-    </div>
-	
-  </body>
+			<div id="content" role="main">
+				<%= yield %>
+			</div>
+			
+			<div id="footer" role="contentinfo">
+				Copyright &#169; 2009 XYZ
+			</div>
+		</div>
+
+	</body>
 
 </html>
 
 <%= javascript_include_tag 'jquery', 'app' %>
-<% html_bottom_items.each do |item| %><%= item %><% end %>
+<% html_bottom_items.each do |item| %><%= item -%><% end %>
