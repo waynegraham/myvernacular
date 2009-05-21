@@ -1,0 +1,18 @@
+<div id="paginationMeta">
+	<div id="per_page"><%= @per_page %></div>
+	<div id="total"><%= @total %></div>
+	<div id="pages"><%= @pages %></div>
+	<div id="page"><%= @page %></div>
+</div>
+
+<script type="text/javascript">
+	var fullsize = {};
+</script>
+
+<div id="photoset">
+	<% @photos.each_with_index do |photo,index| %>
+	<div class="photo">
+		<%= image_tag photo.thumb, :title=>photo['title'], :alt=>photo.full('m') %>
+	</div>
+	<% end %>
+</div>

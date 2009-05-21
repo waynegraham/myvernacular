@@ -1,167 +1,207 @@
 <style type="text/css">
-#flickrQuery{
-	background-color:#FB9;
-	padding:.1em;
-	margin-top:1em;
+
+div.container {
+	border: 1px solid #000000;
+	overflow: auto;
+	width: 100%
 }
-#flickrSearch .yui-g{
+
+div.left{
+	float:left;
+	width:48%;
+}
+
+div.right{
+	float:left;
+	width:48%;
+}
+
+.photoFullUrl{
+	display:none;
+}
+
+#paginationMeta{display:none;}
+
+#photoset{
+	
+}
+	#photoset .photo{
+		width: 75px;
+		float:left;
+	}
+		#photoset .photo img{
+			border:solid 1px #000;
+		}
+		#photoset .photo img:hover{
+			border:solid 1px #999;
+		}
+
+#loadIndicator{
+	float:right;
+	margin-top:5px;
+}
+
+#photoBucket{
+	margin-left:2em;
+	margin-top:2em;
+	padding:1em;
+}
+
+#responseContainer{
+	padding:1em;
+	background-color:#000;
+	padding-left:17px;
+}
+
+#search .yui-gb{
   width:100%;
   margin-bottom:1em;
 }
-#flickrSearch .yui-u {
+#search .yui-u {
   text-align:right;
 }
-#flickrSearch .yui-u.first{
+#search .yui-u.first{
   text-align:left;
 }
 #q{
-  width:95%;
+
 }
 
-#responsePhotosContainer{
-  background-color:#EFEFEF;
-  padding:1em;
-}
-  #responsePhotos ul{
-    
-  }
-  #responsePhotos ul li {
-    list-style:none;
-    float:left;
-    margin:.5em 1em;
-  }
 </style>
 
 <%= stylesheet_link_tag javascript_path('jquery_pagination/lib/jquery_pagination/pagination.css') %>
-<%= javascript_include_tag 'get_rest.jquery.js', 'flickr_client.jquery.js', 'jquery_pagination/lib/jquery_pagination/jquery.pagination.js' %>
+<%= javascript_include_tag 'get_rest.jquery.js', 'jquery_pagination/lib/jquery_pagination/jquery.pagination.js' %>
 
 <script type="text/javascript">
 
 $(function(){
 	
-	var flickr = new FlickrClient('<%= FLICKR_API_KEY %>');
+	/*
+	* the event handler for a "div.set div.photo" click
+	*/
+	function photoClick(){
+		var img = $('<img />');
+		img.attr('src', $('img', this).attr('alt'));
+		$('#photoBucket').html(img);
+	}
 	
-	var default_per_page = 5;
-	
-	function paginate(total_pages, cb){
+	/*
+	* gets called for each new search
+	* sets up the pagination options
+	*/
+	function paginate(total_pages, per_page, callback){
 		pagination_opts = {
-          callback : cb,
-          items_per_page : default_per_page,
-          num_display_entries : 10,
-          num_edge_entries : 2
+          callback : callback,
+          items_per_page : per_page,
+          num_display_entries : 5,
+          num_edge_entries : 1
         }
         $("#Pagination").pagination(total_pages, pagination_opts);
 	}
 	
-	var PHOTO_SIZE = 'm';
-	var THUMB_SIZE = 's';
-	var ATTR = '';
-	
-	function buildPhotoSet(response, service_info){
-		$('#responsePhotos').html('');
-		var list = $('#responsePhotos');
-		$(response.photos.photo).each(function(i,photo){
-			// format thumbnail url
-			var t = 'http://farm'+photo['farm'] + '.static.flickr.com/';
-			t += photo['server'] + '/' + photo['id'] + '_' + photo['secret'] + '_' + THUMB_SIZE + '.jpg';
-			//format image url
-			var h = 'http://farm' + photo['farm'] + '.static.flickr.com/';
-			h += photo['server'] + '/' + photo['id'] + '_';
-			switch (PHOTO_SIZE){
-				case 'm':
-					h += photo['secret'] + '_m.jpg';
-					break;
-				case 'b':
-					h += photo['secret'] + '_b.jpg';
-					break;
-	            case 'o':
-					if (photo['originalsecret'] && photo['originalformat']) {
-						h += photo['originalsecret'] + '_o.' + photo['originalformat'];
-					} else {
-						h += photo['secret'] + '_b.jpg';
-					};
-					break;
-				default:
-					h += photo['secret'] + '.jpg';
-			};
-			list.append('<li><a href="'+h+'" '+ATTR+' title="'+photo['title']+'"><img src="'+t+'" alt="'+photo['title']+'" /></a></li>');
-		});
+	/* replaces the container html with the set (div.set)
+	* and applies behaviors to the .photo items
+	*/
+	function insertPhotoSetAndApplyBehaviors(container, data){
+		var new_set = $('<div class="set"/>').html(data);
+		container.html(new_set);
+		$('.photo', new_set).click(photoClick);
 	}
 	
-	function photoSearch(params, callback){
-		var search_opts = {
-			text : $('#q').val(),
-			per_page : default_per_page,
-			page : 1
-		};
-		var final_params = $.extend(search_opts, params);
-		flickr.get('photos.search', final_params, function(response, service_info){
-			$('#flickrQuery').html(service_info.query);
-			callback(response, service_info);
-		});
-	}
-	
-	function newFlickrSearch(){
-		var paginating_search_callback = function(response, service_info){
-			if(response.stat == 'fail'){
-				alert(response.message + " Try setting a query or username");
-				return;
-			}else{
-				paginate(response.photos.pages, function(page_index, container){
-					photoSearch({page : (page_index+1)}, buildPhotoSet);
-				});
-			}
-		}
-		// search with the userid...
-		var username = $('#flickrUsername').val();
-		if( username.length > 0){
-			flickr.get('people.findByUsername', {username : username}, function(response){
-				if(response.stat=='fail'){
-					alert(response.message);
-				}else{
-					photoSearch({user_id : response.user.id}, paginating_search_callback);
-				}
-			});
+	/* This gets called after a successful response has been
+	* returned from the flickr controller "service".
+	* It creates a new container div (.set) -- this is done so each set can fade-in/out.
+	* (if a div.set already exists, it is faded out).
+	* insertPhotoSetAndApplyBehaviors is called and passed the new div.set
+	*/
+	function applyResponse(data){
+		var container = $('#responseContainer');
+		var current_set = $('div.set', container);
+		if(current_set.length > 0){
+			current_set.fadeOut('medium', function(){
+				insertPhotoSetAndApplyBehaviors(container, data);
+			})
 		}else{
-			photoSearch({}, paginating_search_callback);
+			insertPhotoSetAndApplyBehaviors(container, data);
 		}
 	}
 	
-	$('#flickrSearch .yui-g form').submit(function(){
-		$('#responsePhotos').html('');
-		newFlickrSearch();
+	/*
+	* sends the request to the /flickr/photos controller.
+	* the page is the page number (used by the flickr/photos action)
+	* the "callback" gets passed the data from the flickr/photos action
+	*/
+	function photoSearch(page, callback){
+		$('#loadIndicator').show();
+		$.get('/flickr/photos', {q:$('#q').val(), page:page, username : $('#username').val()}, function(data){
+			callback(data);
+			$('#loadIndicator').hide();
+		})
+	}
+	
+	/*
+	* the response is the HTML result of the flickr/photos action.
+	*/
+	var paginatingSearchCallback = function(response){
+		var d = $(response);
+		var total_pages = $('#total', d).html();
+		var per_page = $('#per_page', d).html();
+		paginate(total_pages, per_page, function(page_index, container){
+			if(page_index == 0){
+				applyResponse(response);
+			}else{
+				photoSearch(page_index+1, applyResponse);
+			}
+		});
+	}
+	
+	/*
+	* The main search function
+	*/
+	function newSearch(){
+		photoSearch(1, paginatingSearchCallback);
+	}
+	
+	$('#search form').submit(function(){
+		newSearch();
 		return false;
 	});
 	
-  
+	$('#loadIndicator').hide();
+	
+	/* when the page loads, fire off a search */
+	newSearch();
+	
 });
 </script>
 
-<div id="flickrSearch">
-  
-  <div class="yui-g">
-    <% form_tag do %>
-      <div class="yui-u first">
-        <%= text_field_tag :q %>
-      </div>
-	<div class="yui-u">
-        <%= label :flickerUsername, 'username (optional)' %><%= text_field_tag :flickrUsername %>
-      </div>
-      <div class="yui-u">
-        <%= submit_tag 'find' %>
-      </div>
-    <% end %>
-  </div>
-  
-  <div id="Pagination" class="pagination"></div>
-  
-  <br style="clear:both;"/>
-  
-  <div id="responsePhotosContainer">
-    <ul id="responsePhotos"></ul>
-    <br style="clear:both;"/>
-  </div>
-  
+<div id="search">
+
+	<div class="yui-gb">
+		<% form_tag do %>
+			<div class="yui-u first">
+				<%= label :q, 'search' %>: <%= text_field_tag :q %>
+			</div>
+			<div class="yui-u">
+				<%= label :username, 'user' %><%= text_field_tag :username %>
+			</div>
+			<div class="yui-u">
+				<%= submit_tag 'find' %>
+			</div>
+		<% end %>
+	</div>
 </div>
 
-<div id="flickrQuery"></div>
+<div class="yui-g">
+	<div class="yui-u first">
+		<div>
+			<div id="Pagination" class="pagination"></div>
+			<div id="loadIndicator"><%= image_tag 'ajax-loader.gif' %></div>
+			<br style="clear:both;"/>
+		</div>
+		<div class="container" id="responseContainer"></div>
+	</div>
+	<div class="yui-u">
+		<div id="photoBucket"></div>
+	</div>
+</div>

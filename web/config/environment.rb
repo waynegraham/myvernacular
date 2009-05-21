@@ -39,10 +39,24 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
   
+  # think about switching to http://wiki.github.com/thoughtbot/clearance
   config.gem 'authlogic', :version => '2.0.11'
-  config.gem 'nokogiri', :version => '1.2.3'
+  
   config.gem 'jnunemaker-httparty', :lib=>'httparty', :version => '0.4.3'
+  
+  config.after_initialize do
+    raise("\n
+    ** FLICKR_API_KEY not defined
+    ** create this file: config/initializers/flickr.rb
+    ** add this code: FLICKR_API_KEY=\"xxx\"
+    ** where your xxx is your flickr api key
+    \n") unless defined?(FLICKR_API_KEY)
+    Flickr::Client.default_params({
+      :api_key => FLICKR_API_KEY, # set this here (un-versioned): config/initializers/flickr.rb
+      :format=>:json
+    })
+  end
   
 end
 
-FLICKR_API_KEY = ''
+require 'lib/flickr'
