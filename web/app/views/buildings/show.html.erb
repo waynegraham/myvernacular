@@ -1,6 +1,8 @@
-<% page_end << capture do %>
-	<%= stylesheet_link_tag javascript_path('jquery_pagination/lib/jquery_pagination/pagination.css'), 'buildings_show' %>
-	<%= javascript_include_tag 'get_rest.jquery.js', 'jquery_pagination/lib/jquery_pagination/jquery.pagination.js', 'buildings_show' %>
+<% html_top_items << capture do %>
+	<%= stylesheet_link_tag javascript_path('jquery_pagination/lib/jquery_pagination/pagination.css'), 'buildings' %>
+<% end %>
+<% html_bottom_items << capture do %>
+	<%= javascript_include_tag 'get_rest.jquery.js', 'jquery_pagination/lib/jquery_pagination/jquery.pagination.js', 'buildings' %>
 <% end %>
 
 <div id="search">
