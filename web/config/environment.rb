@@ -51,6 +51,7 @@ Rails::Initializer.run do |config|
     ** add this code: FLICKR_API_KEY=\"xxx\"
     ** where your xxx is your flickr api key
     \n") unless defined?(FLICKR_API_KEY)
+    require 'lib/flickr'
     Flickr::Client.default_params({
       :api_key => FLICKR_API_KEY, # set this here (un-versioned): config/initializers/flickr.rb
       :format=>:json
@@ -58,5 +59,3 @@ Rails::Initializer.run do |config|
   end
   
 end
-
-require 'lib/flickr'

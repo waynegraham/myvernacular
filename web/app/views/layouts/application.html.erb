@@ -6,8 +6,6 @@
   <head>
   	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   	<title><%= h @document_title %></title>
-  	<%= stylesheet_link_tag 'yui-grids', 'yui-base', 'app' %>
-  	<%= javascript_include_tag 'jquery', 'app' %>
   </head>
   
   <body>
@@ -40,7 +38,11 @@
         Copyright &#169; 2009 XYZ
       </div>
     </div>
-    
+	
+	<%= stylesheet_link_tag 'yui-grids', 'yui-base', 'app' %>
+	<%= javascript_include_tag 'jquery', 'app' %>
+	<% page_end.each do |item| %><%= item %><% end %>
+	
   </body>
-  
+
 </html>

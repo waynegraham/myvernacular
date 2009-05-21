@@ -32,7 +32,7 @@ class FlickrController < ApplicationController
     })
     # remove the callback method wrapper:
     hash_response = js_to_ruby plain_response
-    raise hash_response['message'] unless hash_response['stat']=='ok'
+    raise hash_response.inspect unless hash_response['stat']=='ok'
     hash_response
   end
   

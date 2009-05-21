@@ -8,6 +8,21 @@ body{
 	margin:0;
 }
 
+div.container {
+	overflow: auto;
+	width: 100%
+}
+
+div.left{
+	float:left;
+	width:48%;
+}
+
+div.right{
+	float:left;
+	width:48%;
+}
+
 #doc4{
 	border:solid 1px gray;
 	border-top:none;
