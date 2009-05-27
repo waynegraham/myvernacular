@@ -116,3 +116,18 @@ a{
 .photo{
 	border:solid 1px #000;
 }
+
+#buildingsContainer {
+	clear:both; 
+	overflow:hidden;
+}
+
+#buildingsList {
+	float:left;
+}
+
+#buildingsMap {
+	float: right;
+	width:500px; 
+	height:300px;
+}

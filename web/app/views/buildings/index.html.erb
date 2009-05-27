@@ -1,11 +1,39 @@
+<% html_bottom_items << capture do %>
+	<%= javascript_include_tag 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjpkAC9ePGem0lIq5XcMiuhR_wWLPFku8Ix9i2SXYRVK3e45q1BQUd_beF8dtzKET_EteAjPdGDwqpQ', 'http://openlayers.org/api/OpenLayers.js'%>
+        <script type="text/javascript">
+   	    $(document).ready(function()  
+	    {
+                var map = new OpenLayers.Map('buildingsMap');
+            	var ghyb = new OpenLayers.Layer.Google(
+                	"Google Hybrid",
+                	{type: G_HYBRID_MAP, numZoomLevels: 20}
+            	);
+		var markers = new OpenLayers.Layer.Markers( "buildings" );
+	    	map.addLayers([ghyb, markers]);
+                map.zoomToMaxExtent();
+
+		var size = new OpenLayers.Size(30,30);
+		var offset = new OpenLayers.Pixel(-(size.w/2),-(size.h/2));
+		var icon = new OpenLayers.Icon('images/map_icon.png',size,offset);
+		var mrk;
+		<% @buildings.each do |building| %>
+		mrk = new OpenLayers.Marker(new OpenLayers.LonLat(<%=building.lat%>,<%=building.lon%>),icon.clone());
+		markers.addMarker(mrk);
+		<% end %>
+	    });
+        </script>
+<% end %>
+
 <h1>Buildings</h1>
 
 <%= link_to 'create new building', new_building_path %>
 
 <hr/>
-
-<div id="buidingsList">
-  <% @buildings.each do |building| %>
-    <div><%= link_to building.name, building_path(building) %></div>
-  <% end %>
+<div id="buildingsContainer">
+  <div id="buidingsList">
+    <% @buildings.each do |building| %>
+      <div><%= link_to building.name, building_path(building) %></div>
+    <% end %>
+  </div>
+  <div id="buildingsMap"/>
 </div>
