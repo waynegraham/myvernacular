@@ -42,7 +42,7 @@ Rails::Initializer.run do |config|
   # think about switching to http://wiki.github.com/thoughtbot/clearance
   config.gem 'authlogic', :version => '2.0.11'
   
-  config.gem 'jnunemaker-httparty', :lib=>'httparty', :version => '0.4.3'
+  config.gem 'httparty', :lib=>'httparty', :version => '0.4.3'
   
   config.after_initialize do
     raise("\n
