@@ -5,25 +5,28 @@
     <legend>Login</legend>
     
     <%= f.error_messages %>
-  
-    <div class="row yui-gd">
-      <div class="yui-u first"><%= f.label :login %></div>
-      <div class="yui-u"><%= f.text_field :login %></div>
+  	
+    <div class="row container">
+      <div class="left first"><%= f.label :login %></div>
+      <div class="right"><%= f.text_field :login %></div>
     </div>
   
-    <div class="row yui-gd">
-      <div class="yui-u first"><%= f.label :password %></div>
-      <div class="yui-u"><%= f.password_field :password %></div>
+    <div class="row container">
+      <div class="left first"><%= f.label :password %></div>
+      <div class="right"><%= f.password_field :password %></div>
     </div>
   	
-    <div class="row yui-gd">
-      <div class="yui-u first"><%= f.label :remember_me %></div>
-      <div class="yui-u"><%= f.check_box :remember_me %></div>
+    <div class="row container">
+      <div class="left first"><%= f.label :remember_me %></div>
+      <div class="right"><%= f.check_box :remember_me %></div>
     </div>
   
-    <div class="row yui-gd">
-      <div class="yui-u"><%= f.submit 'Login', :class=>:submit %></div>
-    </div>
+	<div class="row container">
+		<div class="left">&nbsp;</div>
+		<div class="right">
+			<%= f.submit 'Login', :class=>:submit %>
+		</div>
+	</div>
   
   </fieldset>
   
