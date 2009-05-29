@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   
   map.flickr_photos 'flickr/photos', :controller => 'flickr', :action => 'photos'
+  map.connect 'buildings/feed.:format', :controller => 'buildings', :action => 'feed'
   
   map.resource :account, :controller => "users"
   

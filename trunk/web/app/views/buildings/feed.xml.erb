@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" 
+      xmlns:georss="http://www.georss.org/georss">
+   <title>MyVernacular Buildings</title>
+   <subtitle>A collaborative, online resource for vernacular architecture.</subtitle>
+   <link href="http://example.org/"/>
+   <updated>2005-12-13T18:30:02Z</updated>
+   <author>
+      <name>Scholars' Lab, University of Virginia Library</name>
+   </author>
+   <% @buildings.each do |building| %>
+   <entry>
+      <title><%= building.name %></title>
+      <link href="http://example.org/2005/09/09/atom01"/>
+      <updated><%= building.updated_at %></updated>
+      <summary><%= building.name %></summary>
+      <description><%= building.name + ": " + building.city + ", " + building.state %></description>
+      <georss:point><%= building.lat %> <%= building.lon %></georss:point>
+      </entry>
+   <% end %>
+</feed>

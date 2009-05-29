@@ -7,21 +7,12 @@
 				"Google Hybrid",
 				{type: G_HYBRID_MAP, numZoomLevels: 20}
 			);
-			var markers = new OpenLayers.Layer.Markers( "buildings" );
-			map.addLayers([ghyb, markers]);
-			map.zoomToMaxExtent();
-
 			var size = new OpenLayers.Size(30,30);
 			var offset = new OpenLayers.Pixel(-(size.w/2),-(size.h/2));
 			var icon = new OpenLayers.Icon('images/map_icon.png',size,offset);
-			var mrk;
-			<% @buildings.each do |building| %>
-				mrk = new OpenLayers.Marker(
-					new OpenLayers.LonLat('<%= building.lat %>', '<%= building.lon %>'),
-					icon.clone()
-				);
-				markers.addMarker(mrk);
-			<% end %>
+			var markers = new OpenLayers.Layer.GeoRSS("Buildings", "/buildings/feed.xml")
+			map.addLayers([ghyb, markers]);
+			map.zoomToMaxExtent();
 		});
 		</script>
 <% end %>
