@@ -9,15 +9,15 @@
 			);
 			var size = new OpenLayers.Size(30,30);
 			var offset = new OpenLayers.Pixel(-(size.w/2),-(size.h/2));
-			var icon = new OpenLayers.Icon('images/map_icon.png',size,offset);
-			var markers = new OpenLayers.Layer.GeoRSS("Buildings", "/buildings/feed.xml")
+			var icon = new OpenLayers.Icon("/images/map-icon.png",size,offset);
+			var markers = new OpenLayers.Layer.GeoRSS("Buildings", "/buildings/feed.xml", {icon: icon})
 			map.addLayers([ghyb, markers]);
-			map.zoomToMaxExtent();
+			map.zoomToExtent(new OpenLayers.Bounds(-100, -80, 100, 120));
 		});
 		</script>
 <% end %>
 
-<h1>Buildings</h1>
+<h1>Buildings <a href="/buildings/feed.xml"><img src="images/feed-icon-sm.png" title="Subscribe to Buildings Atom Feed" alt="Subscribe to Buildings Atom Feed"></a></h1>
 
 <%= link_to 'create new building', new_building_path %>
 
